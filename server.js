@@ -17,10 +17,16 @@ function start() {
 
   app
     .use(blitz(BLITZ_KEY))
+    .get('/', helloWorld)
     .get('/cpu', cpuBound)
     .get('/memory', memoryBound)
     .get('/io', ioBound)
     .listen(PORT, onListen);
+
+
+  function helloWorld(req, res, next) {
+    res.send('Hello World!');
+  }
 
   function cpuBound(req, res, next) {
     var key = Math.random() < 0.5 ? 'ninjaturtles' : 'powerrangers';
